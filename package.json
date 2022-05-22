@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "npm run dev:h5",
+    "dev": "npm run serve",
     "serve": "npm run dev:h5",
     "build": "npm run build:h5",
     "build:app-plus": "cross-env NODE_ENV=production UNI_PLATFORM=app-plus vue-cli-service uni-build",
@@ -32,6 +32,7 @@
     "@vue/shared": "^3.0.0",
     "core-js": "^3.6.5",
     "flyio": "^0.6.2",
+    "mescroll-uni": "^1.3.7",
     "regenerator-runtime": "^0.12.1",
     "uni-read-pages": "^1.0.5",
     "uni-simple-router": "^2.0.8-beta.4",
@@ -64,7 +65,7 @@
     "postcss-comment": "^2.0.0",
     "puppeteer": "^3.0.1",
     "sass": "^1.52.1",
-    "sass-loader": "7.3.1",
+    "sass-loader": "8.0.2",
     "vue-template-compiler": "^2.6.11",
     "webpack": "4"
   },
