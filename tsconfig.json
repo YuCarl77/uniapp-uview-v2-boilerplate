@@ -1,9 +1,7 @@
 {
+  "include": ["src/**/*.ts", "ignoreWarning.ts"],
+  "exclude": ["node_modules"],
   "compilerOptions": {
-    "types": [
-      "@dcloudio/types",
-      "miniprogram-api-typings",
-      "mini-types"
-    ]
+    "types": ["@dcloudio/types", "miniprogram-api-typings", "mini-types"]
   }
 }
