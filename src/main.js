@@ -8,9 +8,9 @@ App.mpType = "app";
 import { router, RouterMount } from "@/router";
 Vue.use(router);
 
-const app = new Vue({
-  ...App,
-});
+import store from "@/store";
+
+const app = new Vue({ ...App, store });
 
 // #ifdef H5
 RouterMount(app, router, "#app");
