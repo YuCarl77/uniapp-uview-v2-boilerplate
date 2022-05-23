@@ -13,6 +13,7 @@ uniapp-uview-v2-boilerplate
 
 - [uniapp](https://uniapp.dcloud.io/) 使用 Vue.js 开发所有前端应用的框架。
 - [uni-simple-router](https://hhyang.cn/v2/) 像 Vue Router 一样管理路由，快速上手。
+- [Vuex](https://v3.vuex.vuejs.org/zh/) Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。
 - [uView](https://www.uviewui.com/) uni-app 生态专用的 UI 框架。
 - [mescroll-uni](https://www.mescroll.com/uni.html/) 专门用在 uni-app 的下拉刷新和上拉加载的组件。
 

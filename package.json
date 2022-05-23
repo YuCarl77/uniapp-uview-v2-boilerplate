@@ -38,7 +38,8 @@
     "uni-simple-router": "^2.0.8-beta.4",
     "uview-ui": "^2.0.31",
     "vue": "^2.6.11",
-    "vuex": "^3.6.2"
+    "vuex": "^3.6.2",
+    "vuex-persistedstate": "^4.1.0"
   },
   "devDependencies": {
     "@babel/runtime": "~7.12.0",

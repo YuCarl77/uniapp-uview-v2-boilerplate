@@ -1,6 +1,10 @@
 export default {
   state: () => ({ token: null }),
   getters: {},
-  mutations: {},
+  mutations: {
+    setToken(state, payload) {
+      state.token = payload;
+    },
+  },
   actions: {},
 };
