@@ -1,3 +1,14 @@
+view,
+text,
+scroll-view,
+image,
+video,
+swiper,
+button {
+  box-sizing: border-box;
+}
+
 .container {
-  @include flex;
+  @include flex(column);
+  min-height: 100vh;
 }

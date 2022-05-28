@@ -4,6 +4,7 @@ const { webpack, routes } = new TransformPages({
 });
 
 module.exports = {
+  transpileDependencies: ["uview-ui"],
   configureWebpack: {
     plugins: [
       new webpack.DefinePlugin({
