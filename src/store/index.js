@@ -9,13 +9,7 @@ Vue.use(Vuex);
 const { context, modules } = loadModules();
 
 // 定义vuex使用哪些插件
-let plugins = [loadPersistence];
-
-// 非h5的情况下开启vuex的内置日志框架,h5直接用vue-devtools就行了
-// #ifndef H5
-import createLogger from "vuex/dist/logger";
-plugins.push(createLogger());
-// #endif
+const plugins = [loadPersistence];
 
 /**
  * 开发环境时，启用严格模式。
