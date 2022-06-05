@@ -11,6 +11,9 @@ Vue.use(uView);
 import { router, RouterMount } from "@/router";
 Vue.use(router);
 
+import mixin from "@/mixins";
+Vue.use(mixin);
+
 import store from "@/store";
 
 const app = new Vue({ ...App, store });

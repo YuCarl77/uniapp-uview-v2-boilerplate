@@ -5,6 +5,7 @@
   "pages": [
     //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
     {
+      "name": "index",
       "path": "views/tabbar/index"
     }
   ],
@@ -28,6 +29,9 @@
   ],
   "globalStyle": {
     "navigationStyle": "custom",
-    "enablePullDownRefresh": false
+    "app-plus": {
+      "bounce": "none" // 取消iOS回弹,避免与下拉刷新冲突
+    },
+    "mp-alipay": { "allowsBounceVertical": "NO" } // 取消支付宝和钉钉小程序的iOS回弹,避免与下拉刷新冲突
   }
 }

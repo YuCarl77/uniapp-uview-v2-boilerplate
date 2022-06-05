@@ -4,3 +4,6 @@
 @import "@/assets/css/common.scss";
 @import "@/assets/css/iconfont.scss";
 </style>
+<script>
+export default { name: "main" };
+</script>
