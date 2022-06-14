@@ -44,7 +44,7 @@ export default (vm) => {
       if (code === 1) return data || null; // 假设接口的成功值为1, 则直接返回对应的信息
       const { custom } = config; // 自定义参数
       requestLogger(config, message);
-      // 如果没有显式定义custom的toast参数为false的话，默认对报错进行toast弹出提示
+      // 如果没有显式定义custom的toast参数为false的话，且存在返回信息
       if (custom?.toast !== false) vm.$u.toast(message);
       return Promise.reject(message); // 返回异常信息
     },

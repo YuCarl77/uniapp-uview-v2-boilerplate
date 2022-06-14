@@ -1,0 +1,48 @@
+@use "mixin" as *;
+@use "iconfont" as *;
+@import "uview-ui/index";
+
+:root {
+  // 1rem = 16px
+  --font-size-base: 0.875rem;
+  --font-size-sm: 0.813rem;
+  --font-size-xs: 0.75rem;
+  --main: hsl(0, 0%, 10%);
+  --inverse: hsl(0, 0%, 100%);
+  @media screen and (min-width: 768px) {
+    --font-size-base: 1rem;
+    --font-size-sm: 0.875rem;
+    --font-size-xs: 0.813rem;
+  }
+  @media (prefers-color-scheme: light) {
+    --main: hsl(0, 0%, 100%);
+    --inverse: hsl(0, 0%, 10%);
+  }
+}
+
+$font-size-base: var(--font-size-base);
+$main: var(--main);
+$inverse: var(--inverse);
+
+body {
+  min-width: 320px;
+  font-size: $font-size-base;
+  color: $main;
+  background: $inverse;
+}
+
+*,
+view,
+text,
+scroll-view,
+image,
+video,
+swiper,
+button {
+  box-sizing: border-box;
+}
+
+.container {
+  @include flex(column);
+  min-height: 100vh;
+}

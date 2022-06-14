@@ -6,7 +6,14 @@
     //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
     {
       "name": "index",
-      "path": "views/tabbar/index"
+      "path": "views/tabbar/index",
+      "meta": {
+        "title": "首页"
+      }
+    },
+    {
+      "name": "404",
+      "path": "views/error-page/404"
     }
   ],
   "subPackages": [

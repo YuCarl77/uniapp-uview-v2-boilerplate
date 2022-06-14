@@ -1,50 +1,44 @@
 <template>
   <view class="container">
-    <Page @up="reachBottom" @down="pullDownRefresh">
-      <u-button type="primary" text="存储token" @click="testCommit" />
-      <u-button
-        type="warning"
-        text="发送请求带toast"
-        @click="testRequest(true)"
-      />
-      <u-button text="发送请求不带toast" @click="testRequest" />
-      <HelloWorld />
-      <text>token: {{ token || "null" }}</text>
-      <view v-for="idx in goodsList" :key="idx">{{ idx }}</view>
+    <Navbar />
+    <Page :pageSize="pageSize" @up="reachBottom" @down="pullRefresh">
+      <TokenBtns />
+      <Sticky>
+        <u-button
+          type="warning"
+          text="发送请求带toast"
+          @click="testRequest(true)"
+        />
+        <u-button text="发送请求不带toast" @click="testRequest" />
+      </Sticky>
+      <view v-for="idx in 50" :key="idx">
+        {{ idx }}
+      </view>
     </Page>
   </view>
 </template>
 
 <script>
-import { createNamespacedHelpers } from "vuex";
-const { mapState, mapMutations } = createNamespacedHelpers("user");
-import HelloWorld from "@/components/common/HelloWorld.vue";
+import TokenBtns from "@/components/common/TokenBtns.vue";
+import Navbar from "@/components/common/Navbar.vue";
+import Sticky from "@/components/common/Sticky.vue";
 import Page from "@/components/common/Page.vue";
 export default {
-  components: { HelloWorld, Page },
-  computed: {
-    ...mapState(["token"]),
-  },
+  components: { Page, Navbar, Sticky, TokenBtns },
   data() {
-    return {
-      goodsList: [],
-    };
+    return { pageSize: 10 };
   },
   methods: {
     // 上拉加载
-    reachBottom(page) {
-      console.log(page);
+    reachBottom(ev) {
+      const { num, size } = ev;
+      console.log(`分页页数:${num} 分页条数:${size}`);
+      ev.endBySize(6, 10);
     },
     // 下拉刷新
-    pullDownRefresh(e) {
-      console.log(e);
-      // this.goodsList = [...this.goodsList, Math.random()];
-      setTimeout(() => e.endSuccess(30), 500);
-    },
-    ...mapMutations(["setToken"]),
-    // 测试存储vuex的数据
-    testCommit() {
-      this.setToken(this.$u.guid());
+    pullRefresh(ev) {
+      ev.resetUpScroll(); // 重置数据为第一页
+      ev.endSuccess();
     },
     // 测试调用接口
     async testRequest(toast = false) {
