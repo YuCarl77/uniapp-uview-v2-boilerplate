@@ -1,2 +1,27 @@
 // 代码中全局可使用的CSS变量(无需import)
 @import "uview-ui/theme.scss";
+
+:root {
+  // 1rem = 16px
+  // 字体
+  --font-size-base: 0.875rem;
+  --font-size-sm: 0.813rem;
+  --font-size-xs: 0.75rem;
+  @media screen and (min-width: 768px) {
+    --font-size-base: 1rem;
+    --font-size-sm: 0.875rem;
+    --font-size-xs: 0.813rem;
+  }
+  // 颜色
+  --main: hsl(0, 0, 7%);
+  --inverse: hsl(0, 0%, 100%);
+  // 深色模式
+  @media (prefers-color-scheme: dark) {
+    --main: hsl(0, 0%, 100%);
+    --inverse: hsl(0, 0%, 12%);
+  }
+}
+
+$font-size-base: var(--font-size-base);
+$main: var(--main);
+$inverse: var(--inverse);

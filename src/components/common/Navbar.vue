@@ -1,9 +1,12 @@
 <template>
-  <u-navbar class="navbar" :title="getTitle" placeholder safeAreaInsetTop>
+  <u-navbar class="navbar" placeholder safeAreaInsetTop>
     <view class="navbar__left" slot="left">
       <u-icon class="navbar__left--icon" name="arrow-left" size="16" />
       <u-line direction="column" length="12" />
       <u-icon class="navbar__left--icon" name="home" size="18" />
+    </view>
+    <view class="navbar__center" slot="center">
+      {{ getTitle }}
     </view>
   </u-navbar>
 </template>
@@ -35,6 +38,7 @@ export default {
 
 <style lang="scss" scoped>
 .navbar {
+  color: $main;
   ::v-deep .u-navbar--fixed {
     &::after {
       content: "";
@@ -49,7 +53,9 @@ export default {
   }
 
   ::v-deep .u-navbar__content {
+    background: $inverse !important;
     min-width: 320px;
+    transition: all 0.3s ease;
   }
   .navbar__left {
     @include flex;
@@ -58,6 +64,10 @@ export default {
     border-radius: 40px;
     .navbar__left--icon {
       padding: 4px 10px;
+      ::v-deep .u-icon__icon {
+        color: $main !important;
+        transition: color 0.3s ease;
+      }
     }
   }
 }

@@ -44,7 +44,6 @@ export default {
         bottomOffset: 80, // 当手指touchmove位置在距离body底部20upx范围内的时候结束上拉刷新,避免Webview嵌套导致touchend事件不执行
         minAngle: 45, // 向下滑动最少偏移的角度,取值区间  [0,90];默认45度,即向下滑动的角度大于45度则触发下拉;而小于45度,将不触发下拉,避免与左右滑动的轮播等组件冲突;
         beforeEndDelay: 0, // 延时结束的时长 (显示加载成功/失败的时长, android小程序设置此项结束下拉会卡顿, 配置后请注意测试)
-        bgColor: "#fff", // 背景颜色 (建议在pages.json中再设置一下backgroundColorTop)
         textColor: "#999", // 文本颜色 (当bgColor配置了颜色,而textColor未配置时,则textColor会默认为白色)
         textInOffset: "下拉刷新", // 下拉的距离在offset范围内的提示文本
         textOutOffset: "释放更新", // 下拉的距离大于offset范围的提示文本
@@ -100,6 +99,8 @@ export default {
 }
 // 重置下拉刷新的进度条和字体大小为默认大小
 ::v-deep .mescroll-downwarp {
+  background: $inverse;
+
   .downwarp-progress {
     width: $font-size-base;
     height: $font-size-base;
