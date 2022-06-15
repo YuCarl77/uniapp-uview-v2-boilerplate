@@ -20,6 +20,7 @@ page {
     --inverse: hsl(0, 0%, 12%);
   }
 
+  // #ifndef H5
   // 媒体查询深色
   @media (prefers-color-scheme: dark) {
     .container,
@@ -27,6 +28,7 @@ page {
       @include dark;
     }
   }
+  // #endif
   // 手动设置的深色
   .container.dark,
   .body.dark {
