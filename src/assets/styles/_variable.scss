@@ -1,0 +1,39 @@
+:root {
+  // 1rem = 16px
+  // 字体
+  --font-size-base: 0.875rem;
+  --font-size-sm: 0.813rem;
+  --font-size-xs: 0.75rem;
+  @media screen and (min-width: 768px) {
+    --font-size-base: 1rem;
+    --font-size-sm: 0.875rem;
+    --font-size-xs: 0.813rem;
+  }
+
+  // 颜色
+  --main: hsl(0, 0, 7%);
+  --inverse: hsl(0, 0%, 100%);
+
+  // 深色模式
+  @mixin dark() {
+    --main: hsl(0, 0%, 100%);
+    --inverse: hsl(0, 0%, 12%);
+    color-scheme: dark;
+  }
+
+  // 媒体查询深色
+  @media (prefers-color-scheme: dark) {
+    .uni-wrapper {
+      @include dark;
+    }
+  }
+  // 手动设置的深色
+  .uni-wrapper.dark {
+    @include dark;
+  }
+}
+
+// 普通css变量转为scss变量
+$font-size-base: var(--font-size-base);
+$main: var(--main);
+$inverse: var(--inverse);

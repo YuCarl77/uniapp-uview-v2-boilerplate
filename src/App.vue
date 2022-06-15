@@ -1,5 +1,16 @@
+<template>
+  <view :class="['uni-wrapper', { dark: darkMode }]">
+    <router-view />
+  </view>
+</template>
 <script>
-export default { name: "main" };
+import { mapState } from "vuex";
+export default {
+  name: "main",
+  computed: {
+    ...mapState("app", ["darkMode"]),
+  },
+};
 </script>
 
 <style lang="scss">

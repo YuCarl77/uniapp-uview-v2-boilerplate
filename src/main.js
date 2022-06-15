@@ -18,6 +18,9 @@ import store from "@/store";
 
 const app = new Vue({ ...App, store });
 
+import uViewConfig from "@/config/uView";
+uViewConfig(app);
+
 import registerHttp from "@/request";
 registerHttp(app);
 

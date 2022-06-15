@@ -1,0 +1,32 @@
+// 覆盖uview的默认变量
+$u-main-color: $main;
+$u-bg-color: $inverse;
+
+// 覆盖uview的默认样式
+.u-loading-page__warpper__loading-icon {
+  .u-loading-icon__spinner {
+    width: 1.6rem !important;
+    height: 1.6rem !important;
+  }
+}
+// 覆盖深色模式下uview默认样式
+@mixin darkOverride() {
+  .u-popup__content {
+    background: $inverse;
+  }
+  .uni-picker-view-mask {
+    background: unset;
+  }
+}
+
+// 媒体查询深色
+@media (prefers-color-scheme: dark) {
+  .uni-wrapper {
+    @include darkOverride();
+  }
+}
+
+// 手动设置的深色
+.uni-wrapper.dark {
+  @include darkOverride();
+}

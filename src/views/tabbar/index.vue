@@ -3,15 +3,16 @@
     <Navbar />
     <Page :pageSize="pageSize" @up="reachBottom" @down="pullRefresh">
       <TokenBtns />
+      <u-button
+        type="warning"
+        text="发送请求带toast"
+        @click="testRequest(true)"
+      />
+      <u-button text="发送请求不带toast" @click="testRequest" />
       <Sticky>
-        <u-button
-          type="warning"
-          text="发送请求带toast"
-          @click="testRequest(true)"
-        />
-        <u-button text="发送请求不带toast" @click="testRequest" />
+        <SwitchDark />
       </Sticky>
-      <view v-for="idx in 50" :key="idx">
+      <view v-for="idx in 30" :key="idx">
         {{ idx }}
       </view>
     </Page>
@@ -19,12 +20,13 @@
 </template>
 
 <script>
+import SwitchDark from "@/components/common/SwitchDark.vue";
 import TokenBtns from "@/components/common/TokenBtns.vue";
 import Navbar from "@/components/common/Navbar.vue";
 import Sticky from "@/components/common/Sticky.vue";
 import Page from "@/components/common/Page.vue";
 export default {
-  components: { Page, Navbar, Sticky, TokenBtns },
+  components: { Page, Navbar, Sticky, TokenBtns, SwitchDark },
   data() {
     return { pageSize: 10 };
   },

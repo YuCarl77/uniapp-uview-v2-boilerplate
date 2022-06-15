@@ -5,7 +5,7 @@ import createPersistedState from "vuex-persistedstate";
 const key = "vuex";
 
 // 定义需要持久化的模块名字，如果只想模块化单个数据，则以.间隔,如user.token
-const includes = ["user"];
+const includes = ["user", "app.darkMode"];
 
 export default createPersistedState({
   key,
