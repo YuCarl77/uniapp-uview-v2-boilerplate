@@ -1,5 +1,5 @@
 <template>
-  <view id="navbar" class="navbar">
+  <view class="navbar">
     <u-navbar ref="navbar" placeholder safeAreaInsetTop>
       <view class="navbar__left" slot="left">
         <view class="navbar__left--icon">

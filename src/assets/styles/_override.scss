@@ -9,6 +9,15 @@ $u-bg-color: $inverse;
     height: 1.6rem !important;
   }
 }
+
+.u-button {
+  transition: background 0.3s ease;
+  &--info {
+    color: $main !important;
+    background-color: $inverse !important;
+  }
+}
+
 // 覆盖深色模式下uview默认样式
 @mixin darkOverride() {
   .u-popup__content {

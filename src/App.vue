@@ -1,6 +1,9 @@
 <script>
+// 使用了局部混入初始化深色模式,没有必要全局混入onLaunch生命周期,该周期只会加载一次
+import darkMode from "@/mixins/local/darkMode";
 export default {
   name: "main",
+  mixins: [darkMode],
 };
 </script>
 

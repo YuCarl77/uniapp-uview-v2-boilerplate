@@ -1,7 +1,6 @@
 export default (vm) => {
-  // console.log(vm.$u);
   Object.keys(vm.$u.props).forEach((componentName) => {
-    // 重置所有字体大小为rem
+    // 重置部分组件的字体大小为rem以及默认颜色调整
     const component = vm.$u.props[componentName];
     if (component.bgColor) component.bgColor = "var(--inverse)";
     if (component.fontSize) component.fontSize = "1rem";

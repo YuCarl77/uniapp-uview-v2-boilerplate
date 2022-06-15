@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 export default {
   name: "SwitchDark",
   options: {
@@ -22,6 +23,7 @@ export default {
     };
   },
   methods: {
+    ...mapMutations("app", ["setDarkMode"]),
     // 深色模式改变事件
     onDarkChange(event) {
       console.log("darkmode change", new Date(), event);
@@ -53,5 +55,6 @@ export default {
 <style lang="scss" scoped>
 .switch-dark {
   background: $inverse;
+  transition: background 0.3s ease;
 }
 </style>
