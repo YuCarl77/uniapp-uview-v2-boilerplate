@@ -13,18 +13,15 @@ button {
   box-sizing: border-box;
 }
 
-.container {
-  color: $main;
-  background: $inverse;
-}
-
 .container,
 body {
   @include flex(column);
   flex: 1;
-  transition: all 0.3s ease;
   height: auto;
   min-height: 100vh;
+  color: $main;
+  background: $inverse;
+  transition: all 0.3s ease;
 }
 
 body {
