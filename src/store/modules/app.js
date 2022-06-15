@@ -17,6 +17,10 @@ export default {
     setDarkMode(state, payload) {
       state.darkMode = payload;
       document?.body.classList[payload ? "add" : "remove"]("dark");
+      // 未测试, 尝试设置app的状态栏文字颜色
+      // #ifdef APP-PLUS
+      plus.navigator.setStatusBarStyle(isDark ? "dark" : "light");
+      // #endif
     },
     // 赋值导航栏高度
     setNavbarHeight(state, payload) {

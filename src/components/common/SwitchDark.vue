@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from "vuex";
 export default {
   name: "SwitchDark",
   options: {
@@ -22,32 +21,17 @@ export default {
       media: null,
     };
   },
-  computed: {
-    ...mapState("app", ["darkMode"]),
-  },
   methods: {
-    ...mapMutations("app", ["setDarkMode"]),
     // 深色模式改变事件
     onDarkChange(event) {
       console.log("darkmode change", new Date(), event);
       const isDark = event.matches;
       this.setDarkMode(isDark);
-      // 未测试, 尝试设置app的状态栏文字颜色
-      // #ifdef APP-PLUS
-      plus.navigator.setStatusBarStyle(isDark ? "dark" : "light");
-      // #endif
     },
     // 监听深色模式改变
-    listenDarkChange(init) {
+    listenDarkChange() {
       if (!window?.matchMedia) return;
       const media = window.matchMedia("(prefers-color-scheme: dark)");
-      if (init) {
-        if (this.darkMode === null) {
-          this.onDarkChange(media);
-        } else {
-          this.onDarkChange({ matches: this.darkMode });
-        }
-      }
       media.addEventListener("change", this.onDarkChange, true);
       this.media = media;
     },
@@ -59,7 +43,7 @@ export default {
   },
   mounted() {
     //小程序没法监听深色变化
-    this.listenDarkChange(true);
+    this.listenDarkChange();
   },
   beforeDestroy() {
     this.destoryDarkChange();
