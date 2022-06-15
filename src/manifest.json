@@ -36,7 +36,14 @@
     "setting": {
       "urlCheck": false
     },
-    "usingComponents": true
+    "usingComponents": true,
+    "darkmode": true,
+    "themeLocation": "theme.json",
+    "window": {
+      "navigationStyle": "custom",
+      "navigationBarBackgroundColor": "@navBgColor",
+      "navigationBarTextStyle": "@navTxtStyle"
+    }
   },
   "mp-alipay": {
     "usingComponents": true

@@ -21,12 +21,14 @@ $u-bg-color: $inverse;
 
 // 媒体查询深色
 @media (prefers-color-scheme: dark) {
-  .container {
+  .container,
+  body.dark {
     @include darkOverride();
   }
 }
 
 // 手动设置的深色
-.container.dark {
+.container.dark,
+body.dark {
   @include darkOverride();
 }

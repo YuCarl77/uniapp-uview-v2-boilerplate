@@ -15,6 +15,30 @@ export default {
   },
   methods: {
     ...mapMutations("app", ["setDarkMode"]),
+    // 监听深色模式改变
+    onDarkChange(event) {
+      console.log("darkmode change", new Date());
+      const isDark = event.matches;
+      this.setDarkMode(isDark);
+      document.body.classList[isDark ? "add" : "remove"]("dark");
+    },
+    listenDarkChange() {
+      window
+        ?.matchMedia("(prefers-color-scheme: dark)")
+        ?.addEventListener("change", this.onDarkChange, true);
+    },
+    // 模块热更新好像不会触发销毁事件?好像会出现多次
+    destoryDarkChange() {
+      window
+        ?.matchMedia("(prefers-color-scheme: dark)")
+        ?.removeEventListener("change", this.onDarkChange, true);
+    },
+  },
+  mounted() {
+    this.listenDarkChange();
+  },
+  beforeDestroy() {
+    this.destoryDarkChange();
   },
 };
 </script>

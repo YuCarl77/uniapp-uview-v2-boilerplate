@@ -15,6 +15,7 @@
 <script>
 import MescrollBody from "mescroll-uni/mescroll-body.vue";
 export default {
+  options: { styleIsolation: "shared" },
   components: { MescrollBody },
   props: {
     // 开启上拉加载

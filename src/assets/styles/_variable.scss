@@ -22,12 +22,14 @@ page {
 
   // 媒体查询深色
   @media (prefers-color-scheme: dark) {
-    .container {
+    .container,
+    body {
       @include dark;
     }
   }
   // 手动设置的深色
-  .container.dark {
+  .container.dark,
+  .body.dark {
     @include dark;
   }
 }

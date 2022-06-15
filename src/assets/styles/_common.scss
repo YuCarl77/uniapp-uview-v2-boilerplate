@@ -19,8 +19,12 @@ page {
 
 .container {
   @include flex(column);
-  color: $main;
-  background: $inverse;
   min-height: 100vh;
   transition: all 0.3s ease;
+}
+
+.container,
+body {
+  color: $main;
+  background: $inverse;
 }
