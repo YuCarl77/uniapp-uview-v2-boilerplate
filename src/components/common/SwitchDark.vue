@@ -40,7 +40,7 @@ export default {
     },
     // 监听深色模式改变
     listenDarkChange(init) {
-      if (!window) return;
+      if (!window?.matchMedia) return;
       const media = window.matchMedia("(prefers-color-scheme: dark)");
       if (init && this.darkMode === null) this.onDarkChange(media);
       media.addEventListener("change", this.onDarkChange, true);

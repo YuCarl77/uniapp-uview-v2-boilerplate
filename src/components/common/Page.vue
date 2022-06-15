@@ -1,6 +1,6 @@
 <template>
   <mescroll-body
-    sticky
+    class="the-page"
     @init="customInit"
     @up="delayEmitUp"
     @down="delayEmitDown"
@@ -15,7 +15,12 @@
 <script>
 import MescrollBody from "mescroll-uni/mescroll-body.vue";
 export default {
-  options: { styleIsolation: "shared" },
+  options: {
+    styleIsolation: "shared",
+    // virtualHost: true,
+    // externalClasses: ["class"],
+    addGlobalClass: true,
+  },
   components: { MescrollBody },
   props: {
     // 开启上拉加载
@@ -42,7 +47,7 @@ export default {
         autoShowLoading: false, // 如果设置auto=true(在初始化完毕之后自动执行下拉刷新的回调),那么是否显示下拉刷新的进度; 默认false
         isLock: false, // 是否锁定下拉刷新,默认false;
         offset: 80, // 在列表顶部,下拉大于80upx,松手即可触发下拉刷新的回调
-        bottomOffset: 80, // 当手指touchmove位置在距离body底部20upx范围内的时候结束上拉刷新,避免Webview嵌套导致touchend事件不执行
+        bottomOffset: 180, // 当手指touchmove位置在距离body底部20upx范围内的时候结束上拉刷新,避免Webview嵌套导致touchend事件不执行
         minAngle: 45, // 向下滑动最少偏移的角度,取值区间  [0,90];默认45度,即向下滑动的角度大于45度则触发下拉;而小于45度,将不触发下拉,避免与左右滑动的轮播等组件冲突;
         beforeEndDelay: 0, // 延时结束的时长 (显示加载成功/失败的时长, android小程序设置此项结束下拉会卡顿, 配置后请注意测试)
         textColor: "#999", // 文本颜色 (当bgColor配置了颜色,而textColor未配置时,则textColor会默认为白色)
@@ -89,14 +94,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.mescroll-body {
+.the-page {
+  @include flex(column);
+  flex: 1;
+  min-width: none;
+  overflow: unset;
+  min-height: auto !important;
+}
+::v-deep .mescroll-body {
   // sticky元素会"固定"在离它最近的一个拥有"滚动机制"的祖先上
   // (当该祖先的overflow 是 hidden, scroll, auto, 或 overlay时)
   overflow: unset;
-  &:not([class~="container"]) {
-    flex: 1;
-    min-height: auto !important;
-  }
+  // &:not([class~="container"]) {
+  flex: 1;
+  min-height: auto !important;
+  // }
 }
 // 重置下拉刷新的进度条和字体大小为默认大小
 ::v-deep .mescroll-downwarp {

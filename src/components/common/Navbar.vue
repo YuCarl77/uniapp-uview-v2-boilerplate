@@ -37,9 +37,13 @@ export default {
     const select = query.select(".u-navbar__content");
     // 获取navbar的高度,用于vuex存储方便sticky吸顶于其下
     select
-      .boundingClientRect((rect) =>
-        this.$store.commit("app/setNavbarHeight", rect.height)
-      )
+      .boundingClientRect((rect) => {
+        const { statusBarHeight } = uni.getSystemInfoSync();
+        this.$store.commit(
+          "app/setNavbarHeight",
+          rect.height + statusBarHeight
+        );
+      })
       .exec();
   },
 };

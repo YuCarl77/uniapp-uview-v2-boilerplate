@@ -1,7 +1,12 @@
 <template>
   <view :class="['container', { dark: darkMode }]">
     <Navbar />
-    <Page :pageSize="pageSize" @up="reachBottom" @down="pullRefresh">
+    <Page
+      class="container"
+      :pageSize="pageSize"
+      @up="reachBottom"
+      @down="pullRefresh"
+    >
       <TokenBtns />
       <u-button
         type="warning"
@@ -12,7 +17,7 @@
       <Sticky>
         <SwitchDark />
       </Sticky>
-      <view v-for="idx in 30" :key="idx">
+      <view v-for="idx in 40" :key="idx">
         {{ idx }}
       </view>
     </Page>

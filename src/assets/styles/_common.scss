@@ -13,18 +13,20 @@ button {
   box-sizing: border-box;
 }
 
-page {
-  font-size: $font-size-base;
-}
-
 .container {
-  @include flex(column);
-  min-height: 100vh;
-  transition: all 0.3s ease;
+  color: $main;
+  background: $inverse;
 }
 
 .container,
 body {
-  color: $main;
-  background: $inverse;
+  @include flex(column);
+  flex: 1;
+  transition: all 0.3s ease;
+  height: auto;
+  min-height: 100vh;
+}
+
+body {
+  font-size: $font-size-base;
 }
