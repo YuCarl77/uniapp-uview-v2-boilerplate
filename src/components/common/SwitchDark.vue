@@ -32,7 +32,6 @@ export default {
       console.log("darkmode change", new Date(), event);
       const isDark = event.matches;
       this.setDarkMode(isDark);
-      document.body.classList[isDark ? "add" : "remove"]("dark");
       // 未测试, 尝试设置app的状态栏文字颜色
       // #ifdef APP-PLUS
       plus.navigator.setStatusBarStyle(isDark ? "dark" : "light");
@@ -42,7 +41,13 @@ export default {
     listenDarkChange(init) {
       if (!window?.matchMedia) return;
       const media = window.matchMedia("(prefers-color-scheme: dark)");
-      if (init && this.darkMode === null) this.onDarkChange(media);
+      if (init) {
+        if (this.darkMode === null) {
+          this.onDarkChange(media);
+        } else {
+          this.onDarkChange({ matches: this.darkMode });
+        }
+      }
       media.addEventListener("change", this.onDarkChange, true);
       this.media = media;
     },

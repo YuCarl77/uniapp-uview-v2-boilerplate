@@ -16,6 +16,7 @@ export default {
     // 设置深色模式
     setDarkMode(state, payload) {
       state.darkMode = payload;
+      document?.body.classList[payload ? "add" : "remove"]("dark");
     },
     // 赋值导航栏高度
     setNavbarHeight(state, payload) {

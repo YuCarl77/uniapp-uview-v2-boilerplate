@@ -1,4 +1,5 @@
 <template>
+  <!-- 纯h5时不需要动态绑定dark类这样的方式去写深色, 小程序需要 -->
   <view :class="['container', { dark: darkMode }]">
     <Navbar />
     <Page

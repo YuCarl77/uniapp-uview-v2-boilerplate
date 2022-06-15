@@ -24,14 +24,14 @@ body {
   // 媒体查询深色
   @media (prefers-color-scheme: dark) {
     .container,
-    body {
+    & {
       @include dark;
     }
   }
   // #endif
   // 手动设置的深色
   .container.dark,
-  .body.dark {
+  &.dark {
     @include dark;
   }
 }
