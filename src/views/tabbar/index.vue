@@ -1,5 +1,5 @@
 <template>
-  <view class="container">
+  <view :class="['container', { dark: darkMode }]">
     <Navbar />
     <Page :pageSize="pageSize" @up="reachBottom" @down="pullRefresh">
       <TokenBtns />

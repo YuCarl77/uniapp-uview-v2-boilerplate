@@ -1,7 +1,7 @@
+import { mapState } from "vuex";
 export default {
+  options: { styleIsolation: "apply-shared" },
   computed: {
-    navbarHeight() {
-      return this.$store.state.app.navbarHeight;
-    },
+    ...mapState("app", ["darkMode", "navbarHeight"]),
   },
 };

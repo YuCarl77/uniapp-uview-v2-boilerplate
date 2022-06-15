@@ -1,5 +1,5 @@
 <template>
-  <u-navbar class="navbar" placeholder safeAreaInsetTop>
+  <u-navbar ref="navbar" class="navbar" placeholder safeAreaInsetTop>
     <view class="navbar__left" slot="left">
       <u-icon class="navbar__left--icon" name="arrow-left" size="16" />
       <u-line direction="column" length="12" />
@@ -23,15 +23,10 @@ export default {
     const { navbarHeight } = this.$store.state.app;
     if (navbarHeight !== null) return;
     // 获取navbar的高度,用于vuex存储方便sticky吸顶于其下
-    const selector = uni
-      .createSelectorQuery()
-      .in(this)
-      .select(".u-navbar__content");
-    selector
-      .boundingClientRect(({ height }) =>
-        this.$store.commit("app/setNavbarHeight", height)
-      )
-      .exec();
+    this.$store.commit(
+      "app/setNavbarHeight",
+      Number(this.$refs.navbar.height.replace("px", ""))
+    );
   },
 };
 </script>
@@ -53,10 +48,9 @@ export default {
   }
 
   ::v-deep .u-navbar__content {
-    background: $inverse !important;
-    min-width: 320px;
     transition: all 0.3s ease;
   }
+
   .navbar__left {
     @include flex;
     align-items: center;

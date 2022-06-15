@@ -94,7 +94,7 @@ export default {
   overflow: unset;
   &:not([class~="container"]) {
     flex: 1;
-    min-height: auto;
+    min-height: auto !important;
   }
 }
 // 重置下拉刷新的进度条和字体大小为默认大小

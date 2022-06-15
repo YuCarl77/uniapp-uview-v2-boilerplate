@@ -2,21 +2,6 @@
 @use "iconfont" as *;
 @import "uview-ui/index";
 
-:root {
-  min-width: 320px;
-  font-size: $font-size-base;
-}
-
-body,
-page {
-  background: $inverse;
-}
-
-.uni-wrapper {
-  color: $main;
-  transition: all 0.3s ease;
-}
-
 *,
 view,
 text,
@@ -28,7 +13,14 @@ button {
   box-sizing: border-box;
 }
 
+page {
+  font-size: $font-size-base;
+}
+
 .container {
   @include flex(column);
+  color: $main;
+  background: $inverse;
   min-height: 100vh;
+  transition: all 0.3s ease;
 }

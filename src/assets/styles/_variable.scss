@@ -1,4 +1,4 @@
-:root {
+page {
   // 1rem = 16px
   // 字体
   --font-size-base: 0.875rem;
@@ -18,17 +18,16 @@
   @mixin dark() {
     --main: hsl(0, 0%, 100%);
     --inverse: hsl(0, 0%, 12%);
-    color-scheme: dark;
   }
 
   // 媒体查询深色
   @media (prefers-color-scheme: dark) {
-    .uni-wrapper {
+    .container {
       @include dark;
     }
   }
   // 手动设置的深色
-  .uni-wrapper.dark {
+  .container.dark {
     @include dark;
   }
 }
