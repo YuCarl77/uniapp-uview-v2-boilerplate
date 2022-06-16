@@ -1,6 +1,13 @@
-@use "sass:math";
+@use "sass:string";
 
-:root {
+// #ifdef H5
+$rootElement: ":root";
+// #endif
+// #ifndef H5
+$rootElement: "body";
+// #endif
+
+#{string.unquote($rootElement)} {
   // 字体大小
   --font-size-base: 28rpx;
 
