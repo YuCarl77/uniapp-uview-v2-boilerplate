@@ -1,0 +1,34 @@
+// 小程序还是使用rpx算了, 但是通常来说rpx对于平板的支持会很糟糕
+// 下述是给了一个案例,方便全局调用rem(像素单位)
+// 如rem(10)会被换算为对应的rem单位
+// 支持多个参数: rem(10, 20, 30, 40) ,以空格换算 0.5rem 0.6rem ...
+@use "sass:list";
+@use "sass:math";
+@use "sass:string";
+
+// 设计稿375, 平分10份, 1rem = 37.5px
+$baseFontSize: math.div(375, 10);
+
+// 去除css单位
+@function strip-units($number) {
+  @return math.div($number, ($number * 0 + 1));
+}
+
+// px转换rem
+@function rem($list...) {
+  $remList: ();
+  @each $element in $list {
+    $remList: list.append(
+      $remList,
+      math.div(
+          math.ceil(
+            math.div(strip-units($element), strip-units($baseFontSize)) * 1000
+          ),
+          1000
+        ) *
+        1rem,
+      $separator: space
+    );
+  }
+  @return $remList;
+}

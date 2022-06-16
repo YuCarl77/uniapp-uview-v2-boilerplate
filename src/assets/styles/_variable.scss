@@ -1,38 +1,26 @@
-body {
-  // 1rem = 16px
-  // 字体
-  --font-size-base: 0.875rem;
-  --font-size-sm: 0.813rem;
-  --font-size-xs: 0.75rem;
-  @media screen and (min-width: 768px) {
-    --font-size-base: 1rem;
-    --font-size-sm: 0.875rem;
-    --font-size-xs: 0.813rem;
-  }
+@use "sass:math";
+
+:root {
+  // 字体大小
+  --font-size-base: 28rpx;
 
   // 颜色
   --main: hsl(0, 0, 7%);
   --inverse: hsl(0, 0%, 100%);
 
-  // 深色模式
-  @mixin dark() {
+  // 媒体查询深色模式
+  // #ifndef H5
+  @media (prefers-color-scheme: dark) {
     --main: hsl(0, 0%, 100%);
     --inverse: hsl(0, 0%, 12%);
   }
-
-  // #ifndef H5
-  // 媒体查询深色
-  @media (prefers-color-scheme: dark) {
-    .container,
-    & {
-      @include dark;
-    }
-  }
   // #endif
+
   // 手动设置的深色
   .container.dark,
   &.dark {
-    @include dark;
+    --main: hsl(0, 0%, 100%);
+    --inverse: hsl(0, 0%, 12%);
   }
 }
 

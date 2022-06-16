@@ -125,8 +125,11 @@ export default {
 }
 // 重置下拉刷新的进度条和字体大小为默认大小
 ::v-deep .mescroll-upwarp {
-  min-height: unset;
-  padding: 1.6rem 0;
+  @include flex(column);
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  min-height: 42px;
   .upwarp-progress {
     width: $font-size-base;
     height: $font-size-base;

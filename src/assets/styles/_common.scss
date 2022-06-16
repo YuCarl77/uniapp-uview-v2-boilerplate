@@ -1,6 +1,7 @@
-@use "mixin" as *;
-@use "iconfont" as *;
+@import "iconfont";
 @import "uview-ui/index";
+@import "function";
+@import "mixin";
 
 *,
 view,
@@ -26,4 +27,6 @@ body {
 
 body {
   font-size: $font-size-base;
+  // 20px转rem
+  // border: rem(20) solid blanchedalmond;
 }
