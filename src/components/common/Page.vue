@@ -7,6 +7,7 @@
     :fixed="false"
     :up="upOpts"
     :down="downOpts"
+    :bottombar="false"
   >
     <slot />
   </mescroll-body>
