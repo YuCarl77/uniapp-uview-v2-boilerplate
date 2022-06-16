@@ -1,9 +1,14 @@
 import { RouterMount, createRouter } from "uni-simple-router";
 
+const notFoundRouter = {
+  path: "*",
+  redirect: { name: "404" },
+};
+
 const router = createRouter({
   h5: { mode: "history" },
   platform: process.env.VUE_APP_PLATFORM, // 必填,指定当前编译为什么端的环境
-  routes: ROUTES, // ROUTES来自vue.config.js配置出的webpack变量,自动注入了所有pages.json的页面
+  routes: [...ROUTES, notFoundRouter], // ROUTES来自vue.config.js配置出的webpack变量,自动注入了所有pages.json的页面
   applet: { animationDuration: 1000 }, // 路由锁 默认 300ms, 这里防止1秒内多次跳转同页面
   routerErrorEach: (err, router) => {
     // 跳转时错误后执行的守卫, 很奇怪的是push name方式无法拦截错误的路由名, 只能push path才可以

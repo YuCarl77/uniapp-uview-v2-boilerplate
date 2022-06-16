@@ -1,12 +1,15 @@
 <template>
   <view :class="['container', { dark: darkMode }]">
     <Navbar />
-    <u-empty mode="page" icon="http://cdn.uviewui.com/uview/empty/page.png" />
+    <text>我的页</text>
+    <Tabbar />
   </view>
 </template>
+
 <script>
 import Navbar from "@/components/common/Navbar.vue";
+import Tabbar from "@/components/common/Tabbar.vue";
 export default {
-  components: { Navbar },
+  components: { Navbar, Tabbar },
 };
 </script>

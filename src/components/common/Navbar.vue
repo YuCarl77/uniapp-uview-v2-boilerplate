@@ -1,23 +1,35 @@
 <template>
   <view class="navbar">
     <u-navbar ref="navbar" placeholder safeAreaInsetTop>
-      <view class="navbar__left" slot="left">
-        <view class="navbar__left--icon">
-          <u-icon name="arrow-left" size="16" />
-        </view>
-        <u-line direction="column" length="12" />
-        <view class="navbar__left--icon">
-          <u-icon name="home" size="18" />
-        </view>
+      <view slot="left">
+        <slot name="left" />
+        <template v-if="showLeft">
+          <view class="navbar__left">
+            <view class="navbar__left--icon" @click="routerBack">
+              <u-icon name="arrow-left" size="16" />
+            </view>
+            <u-line direction="column" length="12" />
+            <view class="navbar__left--icon" @click="routerHome">
+              <u-icon name="home" size="18" />
+            </view>
+          </view>
+        </template>
       </view>
-      <view class="navbar__center" slot="center">
-        {{ getTitle }}
+      <view slot="center">
+        <slot name="center" />
+        <template v-if="!$slots.center">
+          <view class="navbar__center">
+            {{ getTitle }}
+          </view>
+        </template>
       </view>
+      <view slot="right" />
     </u-navbar>
   </view>
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   name: "Navbar",
   options: {
@@ -25,26 +37,49 @@ export default {
     virtualHost: true,
   },
   computed: {
+    ...mapState("app", ["tabList"]),
     getTitle() {
       return this.$Route?.meta.title || "";
     },
+    // 是否展示左侧
+    showLeft() {
+      return (
+        !this.tabList.some((v) => v.router === this.$Route.name) &&
+        !this.$slots.left
+      );
+    },
+  },
+  methods: {
+    // 返回上一级
+    routerBack() {
+      // 获取当前打开了多少页
+      if (getCurrentPages().length > 1) this.$Router.back();
+      else this.routerHome();
+    },
+    // 返回首页
+    routerHome() {
+      this.$Router.pushTab({ name: "index" });
+    },
+    // 获取navbar的高度,用于vuex存储方便sticky吸顶于其下
+    initNavbarHeight() {
+      const { navbarHeight } = this.$store.state.app;
+      if (navbarHeight !== null) return;
+      // 指向选择器到u-navbar组件内部的vue实例去,光在这this不行
+      const query = uni.createSelectorQuery().in(this.$refs.navbar);
+      const select = query.select(".u-navbar__content");
+      select
+        .boundingClientRect((rect) => {
+          const { statusBarHeight } = uni.getSystemInfoSync();
+          this.$store.commit(
+            "app/setNavbarHeight",
+            rect.height + statusBarHeight
+          );
+        })
+        .exec();
+    },
   },
   mounted() {
-    const { navbarHeight } = this.$store.state.app;
-    if (navbarHeight !== null) return;
-    // 指向选择器到u-navbar组件内部的vue实例去,光在这this不行
-    const query = uni.createSelectorQuery().in(this.$refs.navbar);
-    const select = query.select(".u-navbar__content");
-    // 获取navbar的高度,用于vuex存储方便sticky吸顶于其下
-    select
-      .boundingClientRect((rect) => {
-        const { statusBarHeight } = uni.getSystemInfoSync();
-        this.$store.commit(
-          "app/setNavbarHeight",
-          rect.height + statusBarHeight
-        );
-      })
-      .exec();
+    this.initNavbarHeight();
   },
 };
 </script>

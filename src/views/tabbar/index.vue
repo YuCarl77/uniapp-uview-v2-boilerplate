@@ -22,6 +22,7 @@
         {{ idx }}
       </view>
     </Page>
+    <Tabbar />
   </view>
 </template>
 
@@ -29,10 +30,11 @@
 import SwitchDark from "@/components/common/SwitchDark.vue";
 import TokenBtns from "@/components/common/TokenBtns.vue";
 import Navbar from "@/components/common/Navbar.vue";
+import Tabbar from "@/components/common/Tabbar.vue";
 import Sticky from "@/components/common/Sticky.vue";
 import Page from "@/components/common/Page.vue";
 export default {
-  components: { Page, Navbar, Sticky, TokenBtns, SwitchDark },
+  components: { Page, Navbar, Tabbar, Sticky, TokenBtns, SwitchDark },
   data() {
     return { pageSize: 10 };
   },

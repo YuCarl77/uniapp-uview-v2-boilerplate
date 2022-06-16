@@ -12,8 +12,18 @@
       }
     },
     {
+      "name": "my",
+      "path": "views/tabbar/my",
+      "meta": {
+        "title": "我的"
+      }
+    },
+    {
       "name": "404",
-      "path": "views/error-page/404"
+      "path": "views/error-page/404",
+      "meta": {
+        "title": "页面找不到了..."
+      }
     }
   ],
   "subPackages": [
