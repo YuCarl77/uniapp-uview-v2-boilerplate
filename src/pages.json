@@ -26,6 +26,16 @@
       }
     }
   ],
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "views/tabbar/index"
+      },
+      {
+        "pagePath": "views/tabbar/my"
+      }
+    ]
+  },
   "subPackages": [
     {
       "root": "views/subpackageA",

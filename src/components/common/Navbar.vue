@@ -79,6 +79,8 @@ export default {
     },
   },
   mounted() {
+    // 隐藏小程序自带的tabbar占位
+    uni.hideTabBar();
     this.initNavbarHeight();
   },
 };
