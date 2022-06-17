@@ -14,7 +14,7 @@ export default {
     // 自定义层级
     zIndex: { type: String | Number, default: 1 },
     // 自定义吸顶距离
-    offsetTop: { type: Number },
+    offsetTop: { type: Number, default: -1 },
   },
   computed: {
     getStickyStyle() {
