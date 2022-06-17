@@ -1,5 +1,5 @@
 <template>
-  <u-tabbar border :value="$Route.name" @change="changeTab">
+  <u-tabbar border :value="getCurrRouteName" @change="changeTab">
     <u-tabbar-item
       v-for="(tab, idx) in tabList"
       :key="idx"
@@ -23,6 +23,9 @@ export default {
   },
   computed: {
     ...mapState("app", ["tabList"]),
+    getCurrRouteName() {
+      return this.$Route.name;
+    },
   },
 };
 </script>
