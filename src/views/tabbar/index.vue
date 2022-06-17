@@ -37,6 +37,7 @@ export default {
     Placeholder,
   },
   data() {
+    // 假设分页加载,每次就读10条,当然10条就是默认值也可以不传
     return { pageSize: 10 };
   },
   methods: {
