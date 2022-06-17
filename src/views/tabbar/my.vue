@@ -13,7 +13,7 @@
           class="scroll-view"
           scroll-y
           @scroll="onMescrollScroll"
-          @scrolltolower="onMescrollReachBottom"
+          @scrolltolower="onCustomReachBottom"
         >
           <Page :name="item.id" @up="reachBottom" @down="pullRefresh">
             <text>{{ item.name }}</text>
@@ -64,20 +64,24 @@ export default {
       }
       setTimeout(() => mescroll.endSuccess(), delay);
     },
+    // 指定触底加载的是哪个mescroll标识
+    onCustomReachBottom() {
+      this.onMescrollReachBottom(this.tabList[this.current].id);
+    },
+    // 这个才是真正mescroll触底回来的
     reachBottom(mescroll) {
-      console.log(this.current);
       const { name } = mescroll;
-      console.log("上拉加载mescroll会同时触发, 可通过标识区分" + name);
-      // 只判断当前激活项的tab下标是完全不够的
-      // 还必须要加上mescroll的标识区分是哪一个触发的事件
-      if (this.current === 0 && name === "tab-1") {
+      console.log(
+        `上拉mescroll触发同一个回调,可通过标识${name}或上一个函数的关键信息如current区分`
+      );
+      if (this.current === 0) {
         console.log("当前第一项触底了");
         // 参考mescroll结束方法告诉mescroll总共多少数量和当前每页多少数量
         mescroll.endBySize(mescroll.size, 20);
-      } else if (this.current === 1 && name === "tab-2") {
-        console.log("当前第二项触底了");
-        mescroll.endBySize(mescroll.size, 30);
+        return;
       }
+      console.log("当前第二项触底了");
+      mescroll.endBySize(mescroll.size, 30);
     },
   },
 };
