@@ -1,20 +1,25 @@
 <template>
   <view :class="['container', { dark: darkMode }]">
     <Navbar />
-    <Sticky>
-      <u-tabs
-        :current="current"
-        :list="tabList"
-        :scrollable="false"
-        @change="tabChange"
-      />
-    </Sticky>
+    <u-tabs
+      :current="current"
+      :list="tabList"
+      :scrollable="false"
+      @change="tabChange"
+    />
     <swiper :current="current" @change="swiperChange">
       <swiper-item v-for="item in tabList" :key="item.id">
-        <Page :name="item.id" @up="reachBottom" @down="pullRefresh">
-          <text>{{ item.name }}</text>
-          <Placeholder :count="40" />
-        </Page>
+        <scroll-view
+          class="scroll-view"
+          scroll-y
+          @scroll="onMescrollScroll"
+          @scrolltolower="onMescrollReachBottom"
+        >
+          <Page :name="item.id" @up="reachBottom" @down="pullRefresh">
+            <text>{{ item.name }}</text>
+            <Placeholder :count="40" />
+          </Page>
+        </scroll-view>
       </swiper-item>
     </swiper>
     <Tabbar />
@@ -60,15 +65,18 @@ export default {
       setTimeout(() => mescroll.endSuccess(), delay);
     },
     reachBottom(mescroll) {
+      console.log(this.current);
       const { name } = mescroll;
       console.log("上拉加载mescroll会同时触发, 可通过标识区分" + name);
-      mescroll.endSuccess();
       // 只判断当前激活项的tab下标是完全不够的
       // 还必须要加上mescroll的标识区分是哪一个触发的事件
       if (this.current === 0 && name === "tab-1") {
         console.log("当前第一项触底了");
+        // 参考mescroll结束方法告诉mescroll总共多少数量和当前每页多少数量
+        mescroll.endBySize(mescroll.size, 20);
       } else if (this.current === 1 && name === "tab-2") {
         console.log("当前第二项触底了");
+        mescroll.endBySize(mescroll.size, 30);
       }
     },
   },

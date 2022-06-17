@@ -41,15 +41,15 @@ export default {
   },
   methods: {
     // 上拉加载
-    reachBottom(ev) {
-      const { num, size } = ev;
+    reachBottom(mescroll) {
+      const { num, size } = mescroll;
       console.log(`分页页数:${num} 分页条数:${size}`);
-      ev.endBySize(6, 10);
+      mescroll.endBySize(mescroll.size, 10);
     },
     // 下拉刷新
-    pullRefresh(ev) {
-      ev.resetUpScroll(); // 重置数据为第一页
-      ev.endSuccess();
+    pullRefresh(mescroll) {
+      mescroll.resetUpScroll(); // 重置数据为第一页
+      mescroll.endSuccess();
     },
     // 测试调用接口
     async testRequest(toast = false) {
