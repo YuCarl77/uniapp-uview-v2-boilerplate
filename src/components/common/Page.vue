@@ -18,12 +18,14 @@ import MescrollBody from "mescroll-uni/mescroll-body.vue";
 export default {
   options: {
     styleIsolation: "shared",
-    // virtualHost: true,
-    // externalClasses: ["class"],
     addGlobalClass: true,
   },
   components: { MescrollBody },
   props: {
+    // 用于区分多个的mescroll标识
+    name: {
+      type: String,
+    },
     // 开启上拉加载
     up: {
       type: Boolean,
@@ -78,6 +80,7 @@ export default {
   methods: {
     customInit(entity) {
       entity.i18n = null; // 清掉i18n
+      if (this.name) entity.name = this.name; // 赋值标识符
       const payload = { name: this.$Route.name, value: entity };
       this.$store.commit("app/setMescrollByName", payload);
     },
@@ -99,8 +102,9 @@ export default {
   @include flex(column);
   flex: 1;
   min-width: none;
-  overflow: unset;
   min-height: auto !important;
+  height: 100%;
+  overflow: unset;
 }
 ::v-deep .mescroll-body {
   // sticky元素会"固定"在离它最近的一个拥有"滚动机制"的祖先上
@@ -129,8 +133,9 @@ export default {
   @include flex(column);
   align-items: center;
   justify-content: center;
+  margin: 10rpx 0;
   padding: 0;
-  min-height: 42px;
+  min-height: 100rpx;
   .upwarp-progress {
     width: $font-size-base;
     height: $font-size-base;

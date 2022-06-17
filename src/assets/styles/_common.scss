@@ -22,11 +22,19 @@ body {
   min-height: 100vh;
   color: $main;
   background: $inverse;
-  transition: all 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 body {
   font-size: $font-size-base;
   // 20px转rem
   // border: rem(20) solid blanchedalmond;
+}
+
+swiper {
+  @include flex(column);
+  flex: 1;
+  .uni-swiper-wrapper {
+    flex: 1;
+  }
 }

@@ -39,8 +39,9 @@ export default {
       state.navbarHeight = payload;
     },
     // 根据路由名赋值mescroll实例
-    setMescrollByName(state, payload) {
-      state.mescroll.set(payload.name, payload.value);
+    setMescrollByName(state, { name, value }) {
+      const mescrollList = this.getters["app/getMescrollByName"](name) || [];
+      state.mescroll.set(name, [...mescrollList, value]);
     },
     // 根据路由名删除mescroll实例
     delMescrollByName(state, name) {

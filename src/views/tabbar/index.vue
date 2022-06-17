@@ -2,12 +2,7 @@
   <!-- 纯h5时不需要动态绑定dark类这样的方式去写深色, 小程序需要 -->
   <view :class="['container', { dark: darkMode }]">
     <Navbar />
-    <Page
-      class="container"
-      :pageSize="pageSize"
-      @up="reachBottom"
-      @down="pullRefresh"
-    >
+    <Page :pageSize="pageSize" @up="reachBottom" @down="pullRefresh">
       <TokenBtns />
       <u-button
         type="warning"
@@ -15,12 +10,8 @@
         @click="testRequest(true)"
       />
       <u-button text="发送请求不带toast" @click="testRequest" />
-      <Sticky>
-        <SwitchDark />
-      </Sticky>
-      <view v-for="idx in 40" :key="idx">
-        {{ idx }}
-      </view>
+      <Sticky><SwitchDark /></Sticky>
+      <Placeholder :count="40" />
     </Page>
     <Tabbar />
   </view>
@@ -33,8 +24,18 @@ import Navbar from "@/components/common/Navbar.vue";
 import Tabbar from "@/components/common/Tabbar.vue";
 import Sticky from "@/components/common/Sticky.vue";
 import Page from "@/components/common/Page.vue";
+import Placeholder from "@/components/common/Placeholder.vue";
 export default {
-  components: { Page, Navbar, Tabbar, Sticky, TokenBtns, SwitchDark },
+  name: "Index",
+  components: {
+    Page,
+    Navbar,
+    Tabbar,
+    Sticky,
+    TokenBtns,
+    SwitchDark,
+    Placeholder,
+  },
   data() {
     return { pageSize: 10 };
   },

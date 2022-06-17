@@ -1,15 +1,17 @@
 <template>
-  <u-tabbar border :value="getCurrRouteName" @change="changeTab">
-    <u-tabbar-item
-      v-for="(tab, idx) in tabList"
-      :key="idx"
-      :name="tab.router"
-      :text="tab.text"
-      :icon="tab.icon"
-      :dot="tab.dot || false"
-      :badge="tab.badge || null"
-    />
-  </u-tabbar>
+  <view class="tabbar">
+    <u-tabbar border :value="getCurrRouteName" @change="changeTab">
+      <u-tabbar-item
+        v-for="(tab, idx) in tabList"
+        :key="idx"
+        :name="tab.router"
+        :text="tab.text"
+        :icon="tab.icon"
+        :dot="tab.dot || false"
+        :badge="tab.badge || null"
+      />
+    </u-tabbar>
+  </view>
 </template>
 
 <script>
