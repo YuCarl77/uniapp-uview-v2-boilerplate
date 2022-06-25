@@ -14,7 +14,7 @@ export default (vm) => {
       [name]: (payload = {}, custom = {}) => {
         // 第一个参数为请求体，第二个参数为自定义拦截器custom配置参数
         if (method === "get") payload = { params: payload, custom }; // get的参数需要嵌套一层params
-        return vm.$u.http[method](url, payload, custom);
+        return vm.$u.http[method](url, payload, { custom });
       },
     };
   }, {});

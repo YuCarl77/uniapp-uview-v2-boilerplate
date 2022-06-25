@@ -5,11 +5,16 @@
     <Page :pageSize="pageSize" @up="reachBottom" @down="pullRefresh">
       <TokenBtns />
       <u-button
+        :loading="isSendingRequest"
         type="warning"
         text="发送请求带toast"
         @click="testRequest(true)"
       />
-      <u-button text="发送请求不带toast" @click="testRequest" />
+      <u-button
+        :loading="isSendingRequest"
+        text="发送请求不带toast"
+        @click="testRequest"
+      />
       <Sticky><SwitchDark /></Sticky>
       <Placeholder :count="40" />
     </Page>
@@ -38,7 +43,7 @@ export default {
   },
   data() {
     // 假设分页加载,每次就读10条,当然10条就是默认值也可以不传
-    return { pageSize: 10 };
+    return { pageSize: 10, isSendingRequest: false };
   },
   methods: {
     // 上拉加载
@@ -55,11 +60,15 @@ export default {
     // 测试调用接口
     async testRequest(toast = false) {
       try {
-        // 发送请求, 第三个参数用于传递自定义参数, 默认异常都会弹出toast, 除非指定false
+        this.isSendingRequest = true;
+        // 发送请求, 第二个参数用于传递自定义参数, 默认异常都会弹出toast, 除非指定false
+        // 如果需要携带token, 则传入{auth:true}
         const res = await this.$http.getUserInfo({}, { toast });
         console.log("获取到了数据", res);
       } catch (err) {
         console.log(err);
+      } finally {
+        this.isSendingRequest = false;
       }
     },
   },
